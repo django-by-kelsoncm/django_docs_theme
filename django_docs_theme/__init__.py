@@ -5,7 +5,7 @@ django_docs_theme - A reusable Sphinx HTML theme inspired by official Django doc
 import os
 from typing import Dict, Any
 
-__version__ = "0.1.5"
+__version__ = "0.1.6"
 
 
 def get_html_theme_path() -> str:
@@ -78,6 +78,11 @@ def setup(app: Any) -> Dict[str, Any]:
     """
     theme_path = get_html_theme_path()
     app.add_html_theme("django_docs_theme", theme_path)
+
+    # Injeta explicitamente os arquivos estáticos CSS e JS no pipeline de renderização do Sphinx
+    app.add_css_file("css/colors.css")
+    app.add_css_file("css/base.css")
+    app.add_js_file("js/theme.js")
 
     # Conecta a validação de ambiente CI/CD ao evento builder-inited
     app.connect("builder-inited", validate_github_actions_config)
