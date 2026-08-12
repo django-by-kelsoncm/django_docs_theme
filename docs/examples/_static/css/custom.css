@@ -1,0 +1,4 @@
+/* Exemplo de sobrescrita de CSS no projeto do usuário */
+:root {
+  --django-primary: #0c4b33;
+}

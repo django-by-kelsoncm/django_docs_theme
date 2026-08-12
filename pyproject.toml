@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "django-docs-theme"
+version = "0.1.0"
+description = "Um tema Sphinx reutilizável e elegante para documentação de projetos Django"
+readme = "README.md"
+authors = [
+    { name = "Django Tools Team" }
+]
+license = "MIT"
+requires-python = ">=3.8"
+dependencies = [
+    "sphinx>=4.0"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Web Environment",
+    "Framework :: Django",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Documentation",
+    "Topic :: Documentation :: Sphinx",
+    "Topic :: Software Development :: Documentation"
+]
+
+[project.urls]
+Homepage = "https://github.com/django-by-kelsoncm/django_docs_theme"
+Repository = "https://github.com/django-by-kelsoncm/django_docs_theme"
+
+[project.entry-points."sphinx.html_themes"]
+django_docs_theme = "django_docs_theme"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["django_docs_theme*"]

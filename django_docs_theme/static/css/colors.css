@@ -1,0 +1,105 @@
+/* 
+ * django_docs_theme - Customizável com Variáveis CSS
+ * Inspirado na paleta oficial da documentação do Django
+ */
+
+:root {
+  /* Cores Principais do Django */
+  --django-primary: #0c4b33;          /* Verde escuro Django */
+  --django-secondary: #44b78b;        /* Verde claro Django */
+  --django-dark-green: #092e20;       /* Verde extra escuro para contrastes */
+  --django-accent: #f1f1f1;           /* Fundo neutro suave */
+  
+  /* Texto e Tipografia */
+  --django-text: #2b2b2b;             /* Texto principal */
+  --django-text-muted: #555555;       /* Texto secundário/suave */
+  --django-bg: #ffffff;               /* Fundo da página */
+  --django-sidebar-bg: #f8f9fa;       /* Fundo do menu lateral */
+  --django-border: #e2e8f0;           /* Bordas divisoes */
+  
+  /* Código e Sintaxe */
+  --django-code-bg: #f8f8f8;          /* Fundo de blocos de código */
+  --django-code-text: #24292e;        /* Cor do texto em código */
+  --django-code-border: #e1e4e8;      /* Borda em código */
+  --django-inline-code-bg: #f1f5f9;   /* Fundo código inline */
+  --django-inline-code-text: #0c4b33; /* Texto código inline */
+  
+  /* Links */
+  --django-link: #0c4b33;             /* Links normais */
+  --django-link-hover: #44b78b;       /* Links no hover */
+  
+  /* Header e Footer */
+  --django-header-bg: #0c4b33;        /* Fundo do cabeçalho */
+  --django-header-text: #ffffff;      /* Texto do cabeçalho */
+  --django-header-link: #ffffff;      /* Link do cabeçalho */
+  --django-header-link-hover: #44b78b;/* Link hover cabeçalho */
+  --django-footer-bg: #0c4b33;        /* Fundo do rodapé */
+  --django-footer-text: #ffffff;      /* Texto do rodapé */
+  
+  /* Callouts / Admonitions */
+  --admonition-note-bg: #eef6f3;
+  --admonition-note-border: #0c4b33;
+  --admonition-note-text: #092e20;
+  
+  --admonition-warning-bg: #fff8e6;
+  --admonition-warning-border: #f59e0b;
+  --admonition-warning-text: #78350f;
+  
+  --admonition-danger-bg: #fef2f2;
+  --admonition-danger-border: #ef4444;
+  --admonition-danger-text: #7f1d1d;
+  
+  --admonition-tip-bg: #f0fdf4;
+  --admonition-tip-border: #10b981;
+  --admonition-tip-text: #064e3b;
+
+  /* Fontes */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+/* Suporte a Modo Escuro (Dark Mode) */
+[data-theme="dark"] {
+  --django-primary: #44b78b;
+  --django-secondary: #0c4b33;
+  --django-dark-green: #092e20;
+  --django-accent: #1e293b;
+  
+  --django-text: #e2e8f0;
+  --django-text-muted: #94a3b8;
+  --django-bg: #0f172a;
+  --django-sidebar-bg: #1e293b;
+  --django-border: #334155;
+  
+  --django-code-bg: #1e293b;
+  --django-code-text: #f8fafc;
+  --django-code-border: #334155;
+  --django-inline-code-bg: #1e293b;
+  --django-inline-code-text: #6ee7b7;
+  
+  --django-link: #44b78b;
+  --django-link-hover: #6ee7b7;
+  
+  --django-header-bg: #092e20;
+  --django-header-text: #ffffff;
+  --django-header-link: #ffffff;
+  --django-header-link-hover: #6ee7b7;
+  --django-footer-bg: #092e20;
+  --django-footer-text: #cbd5e1;
+
+  --admonition-note-bg: #064e3b;
+  --admonition-note-border: #34d399;
+  --admonition-note-text: #ecfdf5;
+  
+  --admonition-warning-bg: #451a03;
+  --admonition-warning-border: #fbbf24;
+  --admonition-warning-text: #fffbeb;
+  
+  --admonition-danger-bg: #450a0a;
+  --admonition-danger-border: #f87171;
+  --admonition-danger-text: #fef2f2;
+  
+  --admonition-tip-bg: #064e3b;
+  --admonition-tip-border: #34d399;
+  --admonition-tip-text: #ecfdf5;
+}

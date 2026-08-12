@@ -1,0 +1,4 @@
+/* Customizações da documentação do próprio django-docs-theme */
+:root {
+  --django-primary: #0c4b33;
+}

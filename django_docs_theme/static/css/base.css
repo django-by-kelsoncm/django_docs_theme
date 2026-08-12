@@ -1,0 +1,717 @@
+@import url("colors.css");
+
+/* ==========================================================================
+   Reset & Base Styles
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--django-text);
+  background-color: var(--django-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: var(--django-link);
+  text-decoration: none;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+a:hover, a:focus {
+  color: var(--django-link-hover);
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ==========================================================================
+   Page Layout Structure
+   ========================================================================== */
+
+.django-site-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header */
+.django-header {
+  background-color: var(--django-header-bg);
+  color: var(--django-header-text);
+  border-bottom: 3px solid var(--django-secondary);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.django-header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.django-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--django-header-text);
+}
+
+.django-brand:hover {
+  text-decoration: none;
+  opacity: 0.95;
+}
+
+.django-brand-logo {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+}
+
+.django-brand-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--django-header-text);
+  white-space: nowrap;
+}
+
+.django-header-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.django-nav-list {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.django-nav-item a {
+  color: var(--django-header-link);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.django-nav-item a:hover {
+  color: var(--django-header-link-hover);
+  background-color: rgba(255, 255, 255, 0.1);
+  text-decoration: none;
+}
+
+.django-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Theme Toggle Switch */
+.theme-toggle-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--django-header-text);
+  border-radius: 6px;
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.theme-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Mobile Hamburger Toggle */
+.mobile-menu-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--django-header-text);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+/* Breadcrumbs Bar */
+.django-breadcrumbs-bar {
+  background-color: var(--django-accent);
+  border-bottom: 1px solid var(--django-border);
+  padding: 0.6rem 1.5rem;
+}
+
+.django-breadcrumbs-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.django-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  color: var(--django-text-muted);
+}
+
+.django-breadcrumbs li::after {
+  content: "/";
+  margin-left: 0.4rem;
+  color: var(--django-text-muted);
+  opacity: 0.6;
+}
+
+.django-breadcrumbs li:last-child::after {
+  content: "";
+}
+
+.django-breadcrumbs a {
+  color: var(--django-link);
+  font-weight: 500;
+}
+
+.edit-on-github-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--django-text-muted);
+  font-weight: 500;
+  font-size: 0.85rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid var(--django-border);
+  background-color: var(--django-bg);
+  transition: all 0.2s ease;
+}
+
+.edit-on-github-link:hover {
+  color: var(--django-link);
+  border-color: var(--django-secondary);
+  text-decoration: none;
+}
+
+/* Main Container Layout */
+.django-main-container {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex: 1;
+}
+
+/* Sidebar */
+.django-sidebar {
+  width: 280px;
+  min-width: 280px;
+  background-color: var(--django-sidebar-bg);
+  border-right: 1px solid var(--django-border);
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.django-searchbox {
+  margin-bottom: 1rem;
+}
+
+.django-searchbox form {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.django-searchbox input[type="text"],
+.django-searchbox input[type="search"] {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--django-border);
+  border-radius: 4px;
+  background-color: var(--django-bg);
+  color: var(--django-text);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.django-searchbox input:focus {
+  border-color: var(--django-secondary);
+  box-shadow: 0 0 0 3px rgba(68, 183, 139, 0.2);
+}
+
+.django-searchbox input[type="submit"],
+.django-searchbox button {
+  padding: 0.5rem 0.75rem;
+  background-color: var(--django-primary);
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.django-searchbox input[type="submit"]:hover,
+.django-searchbox button:hover {
+  background-color: var(--django-secondary);
+}
+
+/* Sidebar Navigation Tree (toctree) */
+.django-sidebar nav ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.django-sidebar nav ul ul {
+  padding-left: 1rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.django-sidebar nav li {
+  margin-bottom: 0.35rem;
+}
+
+.django-sidebar nav a {
+  display: block;
+  padding: 0.35rem 0.6rem;
+  color: var(--django-text);
+  border-radius: 4px;
+  font-size: 0.925rem;
+  line-height: 1.4;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.django-sidebar nav a:hover {
+  background-color: rgba(68, 183, 139, 0.15);
+  color: var(--django-link);
+  text-decoration: none;
+}
+
+.django-sidebar nav li.current > a,
+.django-sidebar nav a.current {
+  font-weight: 700;
+  color: var(--django-primary);
+  background-color: rgba(12, 75, 51, 0.1);
+  border-left: 3px solid var(--django-secondary);
+  padding-left: 0.45rem;
+}
+
+.django-sidebar-section-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--django-text-muted);
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+  padding-left: 0.6rem;
+}
+
+/* Content Area */
+.django-content {
+  flex: 1;
+  padding: 2rem 2.5rem;
+  max-width: 960px;
+  overflow-x: auto;
+}
+
+/* ==========================================================================
+   Typography & Sphinx Article Elements
+   ========================================================================== */
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--django-primary);
+  font-weight: 700;
+  line-height: 1.25;
+  margin-top: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 2.2rem;
+  border-bottom: 2px solid var(--django-border);
+  padding-bottom: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+h2 {
+  font-size: 1.65rem;
+  border-bottom: 1px solid var(--django-border);
+  padding-bottom: 0.35rem;
+}
+
+h3 {
+  font-size: 1.35rem;
+}
+
+h4 {
+  font-size: 1.15rem;
+}
+
+/* Header link / Permalinks */
+.headerlink {
+  font-size: 0.85em;
+  color: var(--django-text-muted);
+  padding-left: 0.4rem;
+  text-decoration: none !important;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+h1:hover .headerlink,
+h2:hover .headerlink,
+h3:hover .headerlink,
+h4:hover .headerlink,
+h5:hover .headerlink,
+h6:hover .headerlink,
+dt:hover .headerlink {
+  visibility: visible;
+  opacity: 1;
+}
+
+.headerlink:hover {
+  color: var(--django-secondary);
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1.2rem;
+}
+
+ul, ol {
+  margin-top: 0;
+  margin-bottom: 1.2rem;
+  padding-left: 1.75rem;
+}
+
+li {
+  margin-bottom: 0.35rem;
+}
+
+blockquote {
+  margin: 1.5rem 0;
+  padding: 0.75rem 1.25rem;
+  border-left: 4px solid var(--django-secondary);
+  background-color: var(--django-accent);
+  color: var(--django-text);
+  font-style: italic;
+}
+
+/* Inline & Block Code */
+code, kbd, pre, samp {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+code.literal, p code, li code, td code {
+  background-color: var(--django-inline-code-bg);
+  color: var(--django-inline-code-text);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  border: 1px solid var(--django-code-border);
+}
+
+div.highlight, pre {
+  background-color: var(--django-code-bg);
+  color: var(--django-code-text);
+  border: 1px solid var(--django-code-border);
+  border-radius: 6px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  line-height: 1.45;
+}
+
+pre {
+  margin: 0;
+}
+
+/* Copy Button for Code Blocks */
+.copy-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background-color: var(--django-bg);
+  border: 1px solid var(--django-border);
+  color: var(--django-text-muted);
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  opacity: 0.8;
+  transition: all 0.2s ease;
+}
+
+.copy-btn:hover {
+  opacity: 1;
+  color: var(--django-primary);
+  border-color: var(--django-secondary);
+}
+
+.copy-btn.copied {
+  background-color: var(--django-secondary);
+  color: #ffffff;
+  border-color: var(--django-secondary);
+}
+
+/* ==========================================================================
+   Sphinx Admonitions (Note, Warning, Danger, Tip)
+   ========================================================================== */
+
+.admonition {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  border-radius: 6px;
+  border-left: 5px solid var(--django-primary);
+  background-color: var(--admonition-note-bg);
+  color: var(--django-text);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.admonition .admonition-title {
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.admonition.note {
+  border-left-color: var(--admonition-note-border);
+  background-color: var(--admonition-note-bg);
+}
+.admonition.note .admonition-title {
+  color: var(--admonition-note-text);
+}
+
+.admonition.warning, .admonition.caution {
+  border-left-color: var(--admonition-warning-border);
+  background-color: var(--admonition-warning-bg);
+}
+.admonition.warning .admonition-title, .admonition.caution .admonition-title {
+  color: var(--admonition-warning-text);
+}
+
+.admonition.danger, .admonition.error {
+  border-left-color: var(--admonition-danger-border);
+  background-color: var(--admonition-danger-bg);
+}
+.admonition.danger .admonition-title, .admonition.error .admonition-title {
+  color: var(--admonition-danger-text);
+}
+
+.admonition.tip, .admonition.important, .admonition.seealso {
+  border-left-color: var(--admonition-tip-border);
+  background-color: var(--admonition-tip-bg);
+}
+.admonition.tip .admonition-title, .admonition.important .admonition-title, .admonition.seealso .admonition-title {
+  color: var(--admonition-tip-text);
+}
+
+/* Sphinx Version Directives (versionadded, versionchanged, deprecated) */
+.versionadded, .versionchanged, .deprecated {
+  margin: 1rem 0;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  border-left: 3px solid var(--django-secondary);
+  background-color: var(--django-accent);
+}
+
+.versionadded .versionmodified {
+  font-weight: 600;
+  color: var(--django-primary);
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+
+table.docutils {
+  width: 100%;
+  margin: 1.5rem 0;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+table.docutils th, table.docutils td {
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--django-border);
+  text-align: left;
+}
+
+table.docutils th {
+  background-color: var(--django-accent);
+  color: var(--django-primary);
+  font-weight: 700;
+}
+
+table.docutils tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+[data-theme="dark"] table.docutils tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* ==========================================================================
+   Autodoc & API Reference Blocks
+   ========================================================================== */
+
+dl.py, dl.js, dl.c, dl.cpp {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border: 1px solid var(--django-border);
+  border-radius: 6px;
+  background-color: var(--django-bg);
+}
+
+dl.py dt, dl.js dt {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--django-primary);
+  background-color: var(--django-accent);
+  padding: 0.4rem 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+dl.py dd, dl.js dd {
+  margin-left: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.django-footer {
+  background-color: var(--django-footer-bg);
+  color: var(--django-footer-text);
+  border-top: 3px solid var(--django-secondary);
+  padding: 2rem 1.5rem;
+  margin-top: auto;
+}
+
+.django-footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.django-footer a {
+  color: var(--django-secondary);
+  text-decoration: underline;
+}
+
+.django-footer a:hover {
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   Responsive / Mobile Styles
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  .django-header-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--django-header-bg);
+    flex-direction: column;
+    padding: 1rem 1.5rem;
+    border-bottom: 2px solid var(--django-secondary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .django-header-nav.active {
+    display: flex;
+  }
+
+  .django-nav-list {
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  .django-nav-item {
+    width: 100%;
+  }
+
+  .django-nav-item a {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0;
+  }
+
+  .django-main-container {
+    flex-direction: column;
+  }
+
+  .django-sidebar {
+    width: 100%;
+    min-width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--django-border);
+    padding: 1rem 1.5rem;
+  }
+
+  .django-content {
+    padding: 1.5rem 1.25rem;
+  }
+}

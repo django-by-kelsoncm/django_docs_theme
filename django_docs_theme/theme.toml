@@ -1,0 +1,29 @@
+[theme]
+name = "django_docs_theme"
+inherit = "basic"
+sidebars = ["searchbox.html", "globaltoc.html", "relations.html", "sourcelink.html"]
+
+[theme.pygments_style]
+default = "default"
+
+[options]
+primary_color = "#0c4b33"
+secondary_color = "#44b78b"
+accent_color = "#f1f1f1"
+text_color = "#2b2b2b"
+bg_color = "#ffffff"
+code_bg_color = "#f8f9fa"
+link_color = "#0c4b33"
+link_hover_color = "#44b78b"
+sidebar_bg = "#f8f9fa"
+logo = ""
+logo_height = "36px"
+project_name = ""
+github_url = ""
+github_repo = ""
+github_version = "main"
+doc_path = "docs/"
+navigation_links = ""
+show_edit_on_github = true
+enable_dark_mode = true
+footer_custom_text = ""
