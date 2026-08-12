@@ -59,9 +59,9 @@ img {
 }
 
 .django-header-inner {
-  max-width: 1200px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 0.85rem 1.5rem;
+  padding: 0.85rem 3rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -172,7 +172,7 @@ img {
 .django-sub-header {
   background-color: var(--django-sub-header-bg);
   color: var(--django-sub-header-text);
-  padding: 0.5rem 1.5rem;
+  padding: 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -184,7 +184,7 @@ img {
     justify-content: space-between;
     font-size: 3.2rem;
     font-weight: 300;
-    padding: 0;
+    padding: 0 3rem;
 }
 
 .django-sub-header-title {
