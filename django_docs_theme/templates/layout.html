@@ -95,26 +95,16 @@
 {% endblock %}
 
 {% block content %}
-  {# 3. Breadcrumbs Bar #}
-  {% include "breadcrumbs.html" %}
-
-  {# 4. Main Layout Container (Artigo na ESQUERDA, Navegação Principal na DIREITA como no Django) #}
+  {# 3. Main Layout Container (Artigo na ESQUERDA, Navegação na DIREITA) #}
   <div class="django-main-container">
     {# Main Article Content (Esquerda) #}
     <main class="django-content" role="main">
       {% block body %}{% endblock %}
     </main>
 
-    {# Sidebar Navegação Principal (DIREITA - Estilo Oficial Django) #}
+    {# Sidebar Navegação (DIREITA - Estilo Oficial Django) #}
     {% block sidebar1 %}
       <aside class="django-sidebar" id="django-sidebar" role="navigation" aria-label="Navegação Principal">
-        <div class="django-sidebar-section-title">Navegação Principal</div>
-        <nav>
-          {% block sidebartoc %}
-            {{ toc }}
-          {% endblock %}
-        </nav>
-
         {% if theme_navigation_links %}
           <div class="django-sidebar-section-title">Seções & Links</div>
           <nav>

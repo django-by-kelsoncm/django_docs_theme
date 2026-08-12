@@ -269,7 +269,7 @@ img {
 
 /* 4. Main Container Layout (Content LEFT, Sidebar RIGHT - Django Style) */
 .django-main-container {
-  max-width: 1200px;
+  max-width: 100%;
   width: 100%;
   margin: 0 auto;
   display: flex;
