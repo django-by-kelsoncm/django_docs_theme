@@ -10,7 +10,7 @@ import django_docs_theme
 project = 'django-docs-theme'
 copyright = '2026, Django Tools Team'
 author = 'Django Tools Team'
-release = '0.1.0'
+release = '0.1.1'
 
 extensions = [
     'sphinx.ext.autodoc',
