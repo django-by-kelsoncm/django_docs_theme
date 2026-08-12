@@ -1,4 +1,4 @@
-# django-docs-theme
+# Django inspired theme for Sphinx
 
 Um **tema Sphinx reutilizável** e altamente customizável criado para desenvolvedores Django e suites de projetos no GitHub. Inspirado no design limpo e profissional da [documentação oficial do Django](https://docs.djangoproject.com/), este tema permite manter uma identidade visual padronizada e moderna em todas as documentações da sua organização.
 

@@ -1,4 +1,4 @@
-# Configuration file for Sphinx documentation of django-docs-theme
+# Configuration file for Sphinx documentation of Django inspired theme for Sphinx
 import os
 import sys
 
@@ -7,9 +7,9 @@ sys.path.insert(0, os.path.abspath('..'))
 
 import django_docs_theme
 
-project = 'django-docs-theme'
-copyright = '2026, Django Tools Team'
-author = 'Django Tools Team'
+project = 'Django inspired theme for Sphinx'
+copyright = '2026, Kelson C. M.'
+author = 'Kelson C. Medeiros'
 release = '0.1.1'
 
 extensions = [
@@ -25,7 +25,7 @@ html_theme_path = [django_docs_theme.get_html_theme_path()]
 html_theme_options = {
     'primary_color': '#0c4b33',
     'secondary_color': '#44b78b',
-    'project_name': 'django-docs-theme',
+    'project_name': 'Django inspired theme for Sphinx',
     'github_url': 'https://github.com/django-by-kelsoncm/django_docs_theme',
     'github_repo': 'django-by-kelsoncm/django_docs_theme',
     'github_version': 'main',

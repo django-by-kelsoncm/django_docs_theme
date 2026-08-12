@@ -2,7 +2,7 @@
 Documentação de Exemplo Django
 ===============================
 
-Bem-vindo a este exemplo de documentação utilizando o tema ``django-docs-theme``.
+Bem-vindo a este exemplo de documentação utilizando o tema ``Django inspired theme for Sphinx``.
 
 .. toctree::
    :maxdepth: 2

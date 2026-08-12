@@ -1,8 +1,8 @@
-=================================
-Documentação do django-docs-theme
-=================================
+================================================
+Documentação do Django inspired theme for Sphinx
+================================================
 
-Bem-vindo à documentação oficial do **django-docs-theme**, um tema Sphinx reutilizável e customizável inspirado no design da documentação oficial do Django.
+Bem-vindo à documentação oficial do **Django inspired theme for Sphinx**, um tema Sphinx reutilizável e customizável inspirado no design da documentação oficial do Django.
 
 .. toctree::
    :maxdepth: 2

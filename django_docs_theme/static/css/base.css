@@ -177,13 +177,14 @@ img {
 }
 
 .django-sub-header-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 0.9rem;
-  font-weight: 500;
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 3.2rem;
+    font-weight: 300;
+    padding: 0;
 }
 
 .django-sub-header-title {
@@ -194,8 +195,8 @@ img {
 }
 
 .django-version-badge {
-  background-color: var(--django-secondary);
-  color: #0c4b33;
+  background-color: var(--django-primary);
+  color: var(--django-accent);
   font-weight: 700;
   font-size: 0.75rem;
   padding: 0.15rem 0.5rem;
@@ -274,20 +275,21 @@ img {
   margin: 0 auto;
   display: flex;
   flex: 1;
+  padding: 0 3em;
 }
 
 /* Main Content Article (Left Side) */
 .django-content {
   flex: 1;
   padding: 2rem 2.5rem;
-  max-width: 920px;
   overflow-x: auto;
   order: 1; /* Content comes first (LEFT) */
+  padding: 1.35rem 1.15rem;
 }
 
 /* Sidebar Navigation (RIGHT Side - Django Official Style) */
 .django-sidebar {
-  width: 280px;
+  width: 30%;
   min-width: 280px;
   background-color: var(--django-sidebar-bg);
   border-left: 1px solid var(--django-border); /* Border on LEFT since sidebar is on RIGHT */
@@ -659,6 +661,9 @@ table.docutils tr:nth-child(even) {
   color: #ffffff;
 }
 
+.related {
+  display: none;
+}
 /* ==========================================================================
    Responsive / Mobile Styles
    ========================================================================== */
@@ -675,6 +680,7 @@ table.docutils tr:nth-child(even) {
 
   .django-main-container {
     flex-direction: column;
+    padding: 0 1em;
   }
 
   .django-content {
