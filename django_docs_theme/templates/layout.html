@@ -35,22 +35,28 @@
 
 {% block header %}
 <div class="django-site-wrapper">
-  {# Top Header Bar #}
+  {# 1. Top Header Bar (Estilo Oficial Django) #}
   <header class="django-header">
     <div class="django-header-inner">
       {# Brand Logo & Name #}
-      <a href="{{ pathto(master_doc) }}" class="django-brand">
-        {% if theme_logo %}
-          <img src="{{ pathto('_static/' ~ theme_logo, 1) }}" alt="{{ project }}" class="django-brand-logo" style="{% if theme_logo_height %}height: {{ theme_logo_height }};{% endif %}" />
-        {% elif logo_url %}
-          <img src="{{ logo_url }}" alt="{{ project }}" class="django-brand-logo" />
-        {% elif logo %}
-          <img src="{{ pathto('_static/' ~ logo, 1) }}" alt="{{ project }}" class="django-brand-logo" />
-        {% endif %}
-        <span class="django-brand-title">
-          {% if theme_project_name %}{{ theme_project_name }}{% else %}{{ project }}{% endif %}
+      <div class="django-brand-group">
+        <a href="{{ pathto(master_doc) }}" class="django-brand">
+          {% if theme_logo %}
+            <img src="{{ pathto('_static/' ~ theme_logo, 1) }}" alt="{{ project }}" class="django-brand-logo" style="{% if theme_logo_height %}height: {{ theme_logo_height }};{% endif %}" />
+          {% elif logo_url %}
+            <img src="{{ logo_url }}" alt="{{ project }}" class="django-brand-logo" />
+          {% elif logo %}
+            <img src="{{ pathto('_static/' ~ logo, 1) }}" alt="{{ project }}" class="django-brand-logo" />
+          {% else %}
+            <span class="django-brand-title">
+              {% if theme_project_name %}{{ theme_project_name }}{% else %}{{ project }}{% endif %}
+            </span>
+          {% endif %}
+        </a>
+        <span class="django-tagline">
+          {% if theme_tagline %}{{ theme_tagline }}{% else %}Documentação da Suite Django{% endif %}
         </span>
-      </a>
+      </div>
 
       {# Header Navigation & Controls #}
       <div class="django-header-nav" id="django-header-nav">
@@ -61,7 +67,7 @@
                 {% set parts = item.strip().split('|') %}
                 {% set title = parts[0].strip() %}
                 {% set target = parts[1].strip() if parts|length > 1 else master_doc %}
-                <li class="django-nav-item">
+                <li class="django-nav-item {% if pagename in target or (target == master_doc and pagename == master_doc) %}active{% endif %}">
                   {% if target.startswith('http://') or target.startswith('https://') %}
                     <a href="{{ target }}" target="_blank" rel="noopener noreferrer">{{ title }}</a>
                   {% else %}
@@ -72,7 +78,7 @@
               {% endfor %}
             {% else %}
               {% for nav_item in theme_navigation_links %}
-                <li class="django-nav-item">
+                <li class="django-nav-item {% if pagename in nav_item.url %}active{% endif %}">
                   {% if nav_item.url.startswith('http://') or nav_item.url.startswith('https://') %}
                     <a href="{{ nav_item.url }}" target="_blank" rel="noopener noreferrer">{{ nav_item.title }}</a>
                   {% else %}
@@ -83,10 +89,11 @@
               {% endfor %}
             {% endif %}
           {% else %}
-            <li class="django-nav-item"><a href="{{ pathto(master_doc) }}">Início</a></li>
-            <li class="django-nav-item"><a href="{{ pathto('installation') }}">Instalação</a></li>
-            <li class="django-nav-item"><a href="{{ pathto('tutorial') }}">Tutorial</a></li>
-            <li class="django-nav-item"><a href="{{ pathto('reference') }}">Referência</a></li>
+            <li class="django-nav-item {% if pagename == master_doc %}active{% endif %}"><a href="{{ pathto(master_doc) }}">Início</a></li>
+            <li class="django-nav-item {% if 'installation' in pagename %}active{% endif %}"><a href="{{ pathto('installation') }}">Instalação</a></li>
+            <li class="django-nav-item {% if 'configuration' in pagename %}active{% endif %}"><a href="{{ pathto('configuration') }}">Configuração</a></li>
+            <li class="django-nav-item {% if 'customization' in pagename %}active{% endif %}"><a href="{{ pathto('customization') }}">Customização</a></li>
+            <li class="django-nav-item {% if 'workflow' in pagename %}active{% endif %}"><a href="{{ pathto('workflow') }}">CI/CD</a></li>
             {% if theme_github_url %}
               <li class="django-nav-item"><a href="{{ theme_github_url }}" target="_blank" rel="noopener noreferrer">GitHub</a></li>
             {% endif %}
@@ -107,13 +114,30 @@
       </div>
     </div>
   </header>
+
+  {# 2. Sub-Header Banner Strip (Django "copy-banner" style) #}
+  <section class="django-sub-header">
+    <div class="django-sub-header-inner">
+      <div class="django-sub-header-title">
+        <span>Documentação</span>
+        {% if release %}
+          <span class="django-version-badge">v{{ release }}</span>
+        {% endif %}
+      </div>
+      <div>
+        {% if theme_github_url %}
+          <a href="{{ theme_github_url }}" style="color: rgba(255, 255, 255, 0.85); font-size: 0.85rem;" target="_blank" rel="noopener noreferrer">Repositório no GitHub ↗</a>
+        {% endif %}
+      </div>
+    </div>
+  </section>
 {% endblock %}
 
 {% block content %}
-  {# Breadcrumbs Bar #}
+  {# 3. Breadcrumbs Bar #}
   {% include "breadcrumbs.html" %}
 
-  {# Main Layout Container #}
+  {# 4. Main Layout Container #}
   <div class="django-main-container">
     {# Sidebar Navigation #}
     {% block sidebar1 %}
@@ -151,13 +175,13 @@
         {% endif %}
       </div>
       <div>
-        Documentação desenvolvida com 
-        <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> &amp;
-        <a href="https://github.com/django-by-kelsoncm/django_docs_theme" target="_blank" rel="noopener noreferrer">Django Docs Theme</a>.
+        Desenvolvido com inspiração na documentação oficial do
+        <a href="https://docs.djangoproject.com/" target="_blank" rel="noopener noreferrer">Django</a> &amp;
+        <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a>.
       </div>
       {% if theme_github_url %}
         <div>
-          <a href="{{ theme_github_url }}" target="_blank" rel="noopener noreferrer">Código fonte no GitHub</a>
+          <a href="{{ theme_github_url }}" target="_blank" rel="noopener noreferrer">Ver código no GitHub</a>
         </div>
       {% endif %}
     </div>
