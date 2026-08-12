@@ -10,13 +10,15 @@ import django_docs_theme
 project = 'Django inspired theme for Sphinx'
 copyright = '2026, Kelson C. M.'
 author = 'Kelson C. Medeiros'
-release = '0.1.4'
+release = '0.1.5'
 
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.viewcode',
     'sphinx.ext.intersphinx',
+    'sphinx.ext.githubpages',
     'myst_parser',
+    'django_docs_theme',
 ]
 
 html_theme = 'django_docs_theme'

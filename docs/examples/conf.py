@@ -16,7 +16,9 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.viewcode',
     'sphinx.ext.intersphinx',
+    'sphinx.ext.githubpages',
     'myst_parser',
+    'django_docs_theme',
 ]
 
 html_theme = 'django_docs_theme'
