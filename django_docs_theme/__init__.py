@@ -5,7 +5,7 @@ django_docs_theme - A reusable Sphinx HTML theme inspired by official Django doc
 import os
 from typing import Dict, Any
 
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 
 
 def get_html_theme_path() -> str:
