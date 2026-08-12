@@ -35,7 +35,7 @@
 
 {% block header %}
 <div class="django-site-wrapper">
-  {# 1. Top Header Bar (Estilo Oficial Django) #}
+  {# 1. Top Header Bar (Estilo Oficial Django: Marca na esquerda, Busca e Dark Mode na direita) #}
   <header class="django-header">
     <div class="django-header-inner">
       {# Brand Logo & Name #}
@@ -58,64 +58,25 @@
         </span>
       </div>
 
-      {# Header Navigation & Controls #}
-      <div class="django-header-nav" id="django-header-nav">
-        <ul class="django-nav-list">
-          {% if theme_navigation_links %}
-            {% if theme_navigation_links is string %}
-              {% for item in theme_navigation_links.split(',') %}
-                {% set parts = item.strip().split('|') %}
-                {% set title = parts[0].strip() %}
-                {% set target = parts[1].strip() if parts|length > 1 else master_doc %}
-                <li class="django-nav-item {% if pagename in target or (target == master_doc and pagename == master_doc) %}active{% endif %}">
-                  {% if target.startswith('http://') or target.startswith('https://') %}
-                    <a href="{{ target }}" target="_blank" rel="noopener noreferrer">{{ title }}</a>
-                  {% else %}
-                    {% set clean_target = target[:-5] if target.endswith('.html') else target %}
-                    <a href="{{ pathto(clean_target) }}">{{ title }}</a>
-                  {% endif %}
-                </li>
-              {% endfor %}
-            {% else %}
-              {% for nav_item in theme_navigation_links %}
-                <li class="django-nav-item {% if pagename in nav_item.url %}active{% endif %}">
-                  {% if nav_item.url.startswith('http://') or nav_item.url.startswith('https://') %}
-                    <a href="{{ nav_item.url }}" target="_blank" rel="noopener noreferrer">{{ nav_item.title }}</a>
-                  {% else %}
-                    {% set clean_url = nav_item.url[:-5] if nav_item.url.endswith('.html') else nav_item.url %}
-                    <a href="{{ pathto(clean_url) }}">{{ nav_item.title }}</a>
-                  {% endif %}
-                </li>
-              {% endfor %}
-            {% endif %}
-          {% else %}
-            <li class="django-nav-item {% if pagename == master_doc %}active{% endif %}"><a href="{{ pathto(master_doc) }}">Início</a></li>
-            <li class="django-nav-item {% if 'installation' in pagename %}active{% endif %}"><a href="{{ pathto('installation') }}">Instalação</a></li>
-            <li class="django-nav-item {% if 'configuration' in pagename %}active{% endif %}"><a href="{{ pathto('configuration') }}">Configuração</a></li>
-            <li class="django-nav-item {% if 'customization' in pagename %}active{% endif %}"><a href="{{ pathto('customization') }}">Customização</a></li>
-            <li class="django-nav-item {% if 'workflow' in pagename %}active{% endif %}"><a href="{{ pathto('workflow') }}">CI/CD</a></li>
-            {% if theme_github_url %}
-              <li class="django-nav-item"><a href="{{ theme_github_url }}" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-            {% endif %}
-          {% endif %}
-        </ul>
-      </div>
+      {# Right-side tools: Header Search & Dark Mode Toggle #}
+      <div class="django-header-tools">
+        <form action="{{ pathto('search') }}" method="get" class="django-header-search">
+          <input type="text" name="q" placeholder="Buscar..." aria-label="Buscar na documentação" required />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+          <button type="submit" title="Buscar">🔍</button>
+        </form>
 
-      <div class="django-header-actions">
         {% if theme_enable_dark_mode|tobool %}
           <button id="theme-toggle" class="theme-toggle-btn" aria-label="Alternar modo claro/escuro" title="Alternar modo claro/escuro">
             <span id="theme-toggle-icon">🌙</span>
           </button>
         {% endif %}
-
-        <button id="mobile-menu-toggle" class="mobile-menu-btn" aria-label="Abrir menu de navegação" aria-expanded="false">
-          ☰
-        </button>
       </div>
     </div>
   </header>
 
-  {# 2. Sub-Header Banner Strip (Django "copy-banner" style) #}
+  {# 2. Sub-Header Banner Strip #}
   <section class="django-sub-header">
     <div class="django-sub-header-inner">
       <div class="django-sub-header-title">
@@ -137,26 +98,47 @@
   {# 3. Breadcrumbs Bar #}
   {% include "breadcrumbs.html" %}
 
-  {# 4. Main Layout Container #}
+  {# 4. Main Layout Container (Artigo na ESQUERDA, Navegação Principal na DIREITA como no Django) #}
   <div class="django-main-container">
-    {# Sidebar Navigation #}
+    {# Main Article Content (Esquerda) #}
+    <main class="django-content" role="main">
+      {% block body %}{% endblock %}
+    </main>
+
+    {# Sidebar Navegação Principal (DIREITA - Estilo Oficial Django) #}
     {% block sidebar1 %}
       <aside class="django-sidebar" id="django-sidebar" role="navigation" aria-label="Navegação Principal">
-        {% include "searchbox.html" %}
-        
-        <div class="django-sidebar-section-title">Navegação</div>
+        <div class="django-sidebar-section-title">Navegação Principal</div>
         <nav>
           {% block sidebartoc %}
             {{ toc }}
           {% endblock %}
         </nav>
+
+        {% if theme_navigation_links %}
+          <div class="django-sidebar-section-title">Seções & Links</div>
+          <nav>
+            <ul>
+              {% if theme_navigation_links is string %}
+                {% for item in theme_navigation_links.split(',') %}
+                  {% set parts = item.strip().split('|') %}
+                  {% set title = parts[0].strip() %}
+                  {% set target = parts[1].strip() if parts|length > 1 else master_doc %}
+                  <li class="{% if pagename in target or (target == master_doc and pagename == master_doc) %}current{% endif %}">
+                    {% if target.startswith('http://') or target.startswith('https://') %}
+                      <a href="{{ target }}" target="_blank" rel="noopener noreferrer">{{ title }} ↗</a>
+                    {% else %}
+                      {% set clean_target = target[:-5] if target.endswith('.html') else target %}
+                      <a href="{{ pathto(clean_target) }}" class="{% if pagename == clean_target %}current{% endif %}">{{ title }}</a>
+                    {% endif %}
+                  </li>
+                {% endfor %}
+              {% endif %}
+            </ul>
+          </nav>
+        {% endif %}
       </aside>
     {% endblock %}
-
-    {# Main Article Content #}
-    <main class="django-content" role="main">
-      {% block body %}{% endblock %}
-    </main>
   </div>
 {% endblock %}
 

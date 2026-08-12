@@ -47,7 +47,7 @@ img {
   min-height: 100vh;
 }
 
-/* 1. Header (Django Official Top Header Style) */
+/* 1. Header (Django Official Top Header) */
 .django-header {
   background-color: var(--django-header-bg);
   color: var(--django-header-text);
@@ -89,15 +89,11 @@ img {
 }
 
 .django-brand-title {
-  font-size: 1.6rem;
+  font-size: 1.65rem;
   font-weight: 800;
   letter-spacing: -0.03em;
   color: #ffffff;
   font-family: var(--font-sans);
-}
-
-.django-brand-title span.dot {
-  color: var(--django-secondary);
 }
 
 .django-tagline {
@@ -107,46 +103,49 @@ img {
   white-space: nowrap;
 }
 
-.django-header-nav {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.django-nav-list {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.django-nav-item a {
-  color: rgba(255, 255, 255, 0.9);
-  font-weight: 600;
-  font-size: 0.9rem;
-  padding: 0.4rem 0.75rem;
-  border-radius: 4px;
-  transition: all 0.15s ease;
-}
-
-.django-nav-item a:hover {
-  color: #ffffff;
-  background-color: rgba(255, 255, 255, 0.15);
-  text-decoration: none;
-}
-
-.django-nav-item.active a {
-  color: #ffffff;
-  background-color: var(--django-secondary);
-  text-decoration: none;
-}
-
-.django-header-actions {
+.django-header-tools {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+}
+
+.django-header-search {
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 4px;
+  padding: 0.2rem 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.django-header-search:focus-within {
+  background-color: rgba(255, 255, 255, 0.25);
+  border-color: var(--django-secondary);
+}
+
+.django-header-search input[type="text"],
+.django-header-search input[type="search"] {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-size: 0.85rem;
+  padding: 0.25rem 0.4rem;
+  width: 180px;
+}
+
+.django-header-search input::placeholder {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.django-header-search button {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 0.2rem;
+  font-size: 0.85rem;
 }
 
 /* Theme Toggle Button */
@@ -167,16 +166,6 @@ img {
 .theme-toggle-btn:hover {
   background: rgba(255, 255, 255, 0.25);
   border-color: rgba(255, 255, 255, 0.5);
-}
-
-.mobile-menu-btn {
-  display: none;
-  background: transparent;
-  border: none;
-  color: #ffffff;
-  font-size: 1.5rem;
-  cursor: pointer;
-  padding: 0.25rem;
 }
 
 /* 2. Sub-Header Banner (Django "copy-banner" style) */
@@ -278,7 +267,7 @@ img {
   text-decoration: none;
 }
 
-/* 4. Main Container Layout */
+/* 4. Main Container Layout (Content LEFT, Sidebar RIGHT - Django Style) */
 .django-main-container {
   max-width: 1200px;
   width: 100%;
@@ -287,20 +276,31 @@ img {
   flex: 1;
 }
 
-/* Sidebar */
+/* Main Content Article (Left Side) */
+.django-content {
+  flex: 1;
+  padding: 2rem 2.5rem;
+  max-width: 920px;
+  overflow-x: auto;
+  order: 1; /* Content comes first (LEFT) */
+}
+
+/* Sidebar Navigation (RIGHT Side - Django Official Style) */
 .django-sidebar {
-  width: 270px;
-  min-width: 270px;
+  width: 280px;
+  min-width: 280px;
   background-color: var(--django-sidebar-bg);
-  border-right: 1px solid var(--django-border);
+  border-left: 1px solid var(--django-border); /* Border on LEFT since sidebar is on RIGHT */
+  border-right: none;
   padding: 1.5rem 1rem;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  order: 2; /* Sidebar comes second (RIGHT) */
 }
 
 .django-searchbox {
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 .django-searchbox form {
@@ -390,17 +390,11 @@ img {
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--django-text-muted);
-  margin-top: 1rem;
+  margin-top: 0.75rem;
   margin-bottom: 0.4rem;
-  padding-left: 0.6rem;
-}
-
-/* Main Content Article */
-.django-content {
-  flex: 1;
-  padding: 2rem 2.5rem;
-  max-width: 930px;
-  overflow-x: auto;
+  padding-left: 0.4rem;
+  border-bottom: 1px solid var(--django-border);
+  padding-bottom: 0.25rem;
 }
 
 /* ==========================================================================
@@ -674,56 +668,26 @@ table.docutils tr:nth-child(even) {
     display: none;
   }
 
-  .mobile-menu-btn {
-    display: block;
-  }
-
-  .django-header-nav {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background-color: var(--django-header-bg);
-    flex-direction: column;
-    padding: 1rem 1.5rem;
-    border-bottom: 3px solid var(--django-secondary);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  }
-
-  .django-header-nav.active {
-    display: flex;
-  }
-
-  .django-nav-list {
-    flex-direction: column;
-    width: 100%;
-    align-items: flex-start;
-  }
-
-  .django-nav-item {
-    width: 100%;
-  }
-
-  .django-nav-item a {
-    display: block;
-    width: 100%;
-    padding: 0.5rem 0;
+  .django-header-search input[type="text"],
+  .django-header-search input[type="search"] {
+    width: 120px;
   }
 
   .django-main-container {
     flex-direction: column;
   }
 
-  .django-sidebar {
-    width: 100%;
-    min-width: 100%;
-    border-right: none;
-    border-bottom: 1px solid var(--django-border);
-    padding: 1rem 1.25rem;
+  .django-content {
+    order: 1;
+    padding: 1.35rem 1.15rem;
   }
 
-  .django-content {
-    padding: 1.35rem 1.15rem;
+  .django-sidebar {
+    order: 2;
+    width: 100%;
+    min-width: 100%;
+    border-left: none;
+    border-top: 1px solid var(--django-border);
+    padding: 1rem 1.25rem;
   }
 }
