@@ -61,10 +61,10 @@
   --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
 }
 
-/* Modo Escuro (Dark Mode) */
-[data-theme="dark"] {
+/* Modo Escuro (Dark Mode) - Usando alta especificidade html[data-theme="dark"] para se sobrepor a :root inline */
+html[data-theme="dark"] {
   --django-primary: #44b78b;
-  --django-secondary: #0c4b33;
+  --django-secondary: #34d399;
   --django-dark-green: #062318;
   --django-accent: #1e293b;
   
@@ -106,3 +106,57 @@
   --admonition-tip-border: #34d399;
   --admonition-tip-text: #ecfdf5;
 }
+
+/* Estilos de realce de código Pygments para Dark Mode */
+html[data-theme="dark"] div.highlight {
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+  border-color: #334155 !important;
+}
+
+html[data-theme="dark"] div.highlight pre {
+  color: #f8fafc !important;
+}
+
+html[data-theme="dark"] .highlight .k,
+html[data-theme="dark"] .highlight .kn,
+html[data-theme="dark"] .highlight .kp,
+html[data-theme="dark"] .highlight .kr,
+html[data-theme="dark"] .highlight .kd { color: #f472b6 !important; font-weight: bold; } /* Keywords */
+
+html[data-theme="dark"] .highlight .s,
+html[data-theme="dark"] .highlight .sa,
+html[data-theme="dark"] .highlight .sb,
+html[data-theme="dark"] .highlight .sc,
+html[data-theme="dark"] .highlight .dl,
+html[data-theme="dark"] .highlight .sd,
+html[data-theme="dark"] .highlight .s2,
+html[data-theme="dark"] .highlight .se,
+html[data-theme="dark"] .highlight .sh,
+html[data-theme="dark"] .highlight .si,
+html[data-theme="dark"] .highlight .sx,
+html[data-theme="dark"] .highlight .sr,
+html[data-theme="dark"] .highlight .s1,
+html[data-theme="dark"] .highlight .ss { color: #34d399 !important; } /* Strings */
+
+html[data-theme="dark"] .highlight .c,
+html[data-theme="dark"] .highlight .ch,
+html[data-theme="dark"] .highlight .cm,
+html[data-theme="dark"] .highlight .cp,
+html[data-theme="dark"] .highlight .cpf,
+html[data-theme="dark"] .highlight .c1,
+html[data-theme="dark"] .highlight .cs { color: #94a3b8 !important; font-style: italic; } /* Comments */
+
+html[data-theme="dark"] .highlight .nf,
+html[data-theme="dark"] .highlight .fm { color: #60a5fa !important; } /* Functions */
+
+html[data-theme="dark"] .highlight .nn,
+html[data-theme="dark"] .highlight .nc { color: #f59e0b !important; } /* Classes/Modules */
+
+html[data-theme="dark"] .highlight .m,
+html[data-theme="dark"] .highlight .mb,
+html[data-theme="dark"] .highlight .mf,
+html[data-theme="dark"] .highlight .mh,
+html[data-theme="dark"] .highlight .mi,
+html[data-theme="dark"] .highlight .il,
+html[data-theme="dark"] .highlight .mo { color: #a78bfa !important; } /* Numbers */

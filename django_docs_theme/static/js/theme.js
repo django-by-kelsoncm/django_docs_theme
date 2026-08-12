@@ -3,6 +3,19 @@
  * Handles dark mode, mobile menu toggle, copy code blocks, and UI interactions.
  */
 
+// Immediately check and apply theme before DOM complete to avoid FOUC
+(function syncThemeState() {
+  const storedTheme = localStorage.getItem('django-theme');
+  const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const initialTheme = storedTheme || (systemPrefersDark ? 'dark' : 'light');
+  
+  if (initialTheme === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+  }
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
   initDarkMode();
   initMobileMenu();
@@ -15,17 +28,17 @@ document.addEventListener('DOMContentLoaded', () => {
  */
 function initDarkMode() {
   const themeToggleBtn = document.getElementById('theme-toggle');
-  const storedTheme = localStorage.getItem('django-theme');
-  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-  let currentTheme = storedTheme || (systemPrefersDark ? 'dark' : 'light');
-  applyTheme(currentTheme);
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  
+  updateToggleBtnIcon(isDark ? '☀️' : '🌙');
 
   if (themeToggleBtn) {
     themeToggleBtn.addEventListener('click', () => {
-      currentTheme = (currentTheme === 'dark') ? 'light' : 'dark';
-      applyTheme(currentTheme);
-      localStorage.setItem('django-theme', currentTheme);
+      const currentTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      const newTheme = (currentTheme === 'dark') ? 'light' : 'dark';
+      
+      applyTheme(newTheme);
+      localStorage.setItem('django-theme', newTheme);
     });
   }
 }
@@ -70,7 +83,7 @@ function initCopyCodeButtons() {
 
   codeBlocks.forEach((block) => {
     // Avoid duplicate buttons or inner elements
-    if (block.querySelector('.copy-btn') || block.tagName === 'PRE' && block.parentElement.classList.contains('highlight')) {
+    if (block.querySelector('.copy-btn') || (block.tagName === 'PRE' && block.parentElement.classList.contains('highlight'))) {
       return;
     }
 
