@@ -177,14 +177,14 @@ img {
 }
 
 .django-sub-header-inner {
-    max-width: 100%;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 3.2rem;
-    font-weight: 300;
-    padding: 0 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.4rem;
+  font-weight: 300;
+  padding: 0.5rem 3rem;
 }
 
 .django-sub-header-title {
@@ -668,32 +668,143 @@ table.docutils tr:nth-child(even) {
    Responsive / Mobile Styles
    ========================================================================== */
 
+/* Universal Fluid Media & Overflow Safeguards */
+.django-content img,
+.django-content iframe,
+.django-content video {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block;
+  box-sizing: border-box;
+}
+
+.django-content table,
+table.docutils {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+}
+
+.django-content pre,
+div.highlight pre {
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: pre;
+  word-wrap: normal;
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1024px) {
+  .django-header-inner {
+    padding: 0.75rem 1.5rem;
+  }
+  .django-sub-header-inner {
+    padding: 0.5rem 1.5rem;
+    font-size: 1.3rem;
+  }
+  .django-main-container {
+    padding: 0 1rem;
+  }
+}
+
 @media (max-width: 900px) {
+  .django-header-inner {
+    padding: 0.6rem 1rem;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
   .django-tagline {
     display: none;
   }
 
+  .django-header-tools {
+    gap: 0.5rem;
+  }
+
   .django-header-search input[type="text"],
   .django-header-search input[type="search"] {
-    width: 120px;
+    width: 130px;
+  }
+
+  .django-sub-header-inner {
+    padding: 0.5rem 1rem;
+    font-size: 1.15rem;
+    flex-wrap: wrap;
+    gap: 0.4rem;
   }
 
   .django-main-container {
     flex-direction: column;
-    padding: 0 1em;
+    padding: 0;
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   .django-content {
     order: 1;
-    padding: 1.35rem 1.15rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 1.25rem 1rem;
   }
 
   .django-sidebar {
     order: 2;
     width: 100%;
     min-width: 100%;
+    box-sizing: border-box;
     border-left: none;
-    border-top: 1px solid var(--django-border);
-    padding: 1rem 1.25rem;
+    border-top: 2px solid var(--django-border);
+    padding: 1.25rem 1rem;
+  }
+
+  .django-footer {
+    padding: 1.5rem 1rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .django-header-inner {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .django-brand-title {
+    font-size: 1.35rem;
+  }
+
+  .django-header-search input[type="text"],
+  .django-header-search input[type="search"] {
+    width: 95px;
+    font-size: 0.8rem;
+  }
+
+  .django-header-search input:focus {
+    width: 120px;
+  }
+
+  .django-sub-header-inner {
+    padding: 0.4rem 0.75rem;
+    font-size: 1.05rem;
+  }
+
+  .django-content {
+    padding: 1rem 0.75rem;
+  }
+
+  .django-content h1 {
+    font-size: 1.65rem;
+  }
+
+  .django-content h2 {
+    font-size: 1.35rem;
+  }
+
+  .django-content h3 {
+    font-size: 1.15rem;
   }
 }
