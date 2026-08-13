@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "django-docs-theme"
-version = "0.1.6"
+version = "0.1.7"
 description = "Um tema Sphinx reutilizável e elegante para documentação de projetos Django"
 readme = "README.md"
 authors = [
@@ -42,3 +42,14 @@ django_docs_theme = "django_docs_theme"
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["django_docs_theme*"]
+
+[tool.setuptools.package-data]
+django_docs_theme = [
+    "*.html",
+    "theme.conf",
+    "theme.toml",
+    "static/css/*.css",
+    "static/js/*.js",
+    "templates/*.html",
+    "templates/*/*.html",
+]

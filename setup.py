@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="django-docs-theme",
-    version="0.1.6",
+    version="0.1.7",
     author="Django Tools Team",
     author_email="kelson@example.com",
     description="Um tema Sphinx reutilizável e elegante para documentação de projetos Django",
@@ -17,6 +17,7 @@ setup(
     include_package_data=True,
     package_data={
         "django_docs_theme": [
+            "*.html",
             "theme.conf",
             "theme.toml",
             "static/css/*.css",

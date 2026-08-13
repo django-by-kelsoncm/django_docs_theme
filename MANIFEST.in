@@ -2,6 +2,7 @@ include LICENSE
 include README.md
 include django_docs_theme/theme.conf
 include django_docs_theme/theme.toml
+include django_docs_theme/*.html
 recursive-include django_docs_theme/static *
 recursive-include django_docs_theme/templates *
 
